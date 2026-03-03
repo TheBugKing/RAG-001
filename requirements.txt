@@ -1,0 +1,10 @@
+chromadb
+requests
+fastapi
+uvicorn
+python-dotenv
+psycopg2-binary
+sqlalchemy
+pydantic
+pydantic-settings
+pydantic-core
