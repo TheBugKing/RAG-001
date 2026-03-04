@@ -65,8 +65,8 @@ class CRUDInterface(ABC):
         ...
 
     @abstractmethod
-    def select_all(self, limit: int = 100) -> list[Any]:
-        """List up to `limit` records (repository defines ordering)."""
+    def select_all(self) -> list[Any]:
+        """List all records (repository defines ordering)."""
         ...
 
     @abstractmethod

@@ -4,7 +4,7 @@ from sqlalchemy import create_engine, Engine
 from sqlalchemy.orm import Session, sessionmaker
 
 from app.db.base import Base
-from app.interfaces.database_engine_interface import DatabaseEngineInterface
+from app.interfaces import DatabaseEngineInterface
 
 
 class SQLiteDB(DatabaseEngineInterface):

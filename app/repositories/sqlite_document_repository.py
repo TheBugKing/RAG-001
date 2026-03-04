@@ -13,7 +13,7 @@ from typing import Any
 
 from sqlalchemy.orm import Session
 
-from app.interfaces.curd_interface import CRUDInterface
+from app.interfaces.db_curd_interfaces.curd_interface import CRUDInterface
 from app.models.document_model import Document
 
 
