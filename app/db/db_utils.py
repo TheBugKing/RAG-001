@@ -4,7 +4,7 @@ from app.db.sqlite_db import SQLiteDB
 from app.db.chroma_db import ChromaDB
 from app.repositories.chromadb_repository import ChromaDBRepository
 
-DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data/rag.db")
+DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data/sqlite/rag_001.db")
 VECTOR_STORE_URL = os.getenv("VECTOR_STORE_URL", "./data/chroma/rag_vector_001.db")
 
 # Create single engines here

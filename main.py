@@ -12,7 +12,7 @@ from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 
 from app.api.master_routes import main_routers
-
+from app.db import run_migrations
 # ---------------------------------------------------------------------------
 # DB engine: one instance, used for init_db and to provide sessions
 # ---------------------------------------------------------------------------
@@ -27,6 +27,12 @@ async def lifespan(app: FastAPI):
     print("Initializing database...")
     db_engine.init_db()
     print("Database initialized")
+    # Run Alembic migrations only when explicitly enabled (e.g. local dev).
+    # In production, run `alembic upgrade head` in CI/CD or a separate migration step.
+    if os.getenv("RUN_MIGRATIONS", "false").lower() in ("1", "true", "yes"):
+        print("Running migrations...")
+        run_migrations()
+        print("Migrations run")
     print("Initializing vector store...")
     vector_store_engine.init_store()
     print("Vector store initialized")

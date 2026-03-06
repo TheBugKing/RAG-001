@@ -8,3 +8,5 @@ sqlalchemy
 pydantic
 pydantic-settings
 pydantic-core
+python-multipart
+alembic
