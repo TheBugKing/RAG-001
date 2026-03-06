@@ -10,6 +10,7 @@ async def upload_file(file: UploadFile = File(...)):
         file_content = await file.read()
         print(file_content[:1000])
         file.filename = file.filename.encode("utf-8").decode("utf-8")
+        
         return JSONResponse(content={"message": "File uploaded successfully"})
     except Exception as e:
         print(e)
