@@ -2,7 +2,7 @@
 import os
 from app.db.sqlite_db import SQLiteDB
 from app.db.chroma_db import ChromaDB
-from app.repositories.chromadb_repository import ChromaDBRepository
+from app.models.repositories import ChromaDBRepository, SqliteDocumentRepository
 
 DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./data/sqlite/rag_001.db")
 VECTOR_STORE_URL = os.getenv("VECTOR_STORE_URL", "./data/chroma/rag_vector_001.db")
@@ -16,9 +16,10 @@ def get_db():
     yield from db_engine.get_db()
 
 def get_document_repository():
-    db = next(db_engine.get_db())           # or use Depends(get_db) pattern
-    yield db
+    session = next(db_engine.get_db())           # or use Depends(get_db) pattern
+    db = SqliteDocumentRepository(session=session)
+    return db
 
 def get_vector_store(collection_name: str):
-    collection = next(vector_store_engine.get_vector_store(collection_name))
-    yield ChromaDBRepository(collection=collection)   # no client.close() here
+    collection = next(vector_store_engine.get_vector_store(collection_name=collection_name))
+    return ChromaDBRepository(collection=collection)   # no client.close() here

@@ -11,3 +11,8 @@ pydantic-core
 python-multipart
 alembic
 pathvalidate
+langchain
+langchain-community
+pymupdf
+langchain-text-splitters
+langchain-openai

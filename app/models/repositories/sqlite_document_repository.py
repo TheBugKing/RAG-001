@@ -26,6 +26,10 @@ class SqliteDocumentRepository(CRUDInterface):
     def __init__(self, session: Session) -> None:
         self._session = session
 
+    def close(self) -> None:
+        """Close the underlying session. Call when done (e.g. in background tasks)."""
+        self._session.close()
+
     # ------------------------------------------------------------------
     # Interface methods
     # ------------------------------------------------------------------

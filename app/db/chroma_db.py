@@ -8,6 +8,7 @@ from typing import Any
 
 import chromadb
 from chromadb.config import Settings
+from chromadb import PersistentClient
 
 from app.interfaces import VectorStoreEngineInterface
 
@@ -16,11 +17,11 @@ class ChromaDB(VectorStoreEngineInterface):
         self.db_url = str(db_url).strip()
         self.client = self.init_store()
 
-    def init_store(self) -> None:
+    def init_store(self) -> PersistentClient:
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         data_dir = os.path.join(project_root, "data", "chroma")
         os.makedirs(data_dir, exist_ok=True)
-        return chromadb.PersistentClient(path=self.db_url)
+        return chromadb.PersistentClient(path=self.db_url, settings=Settings())
 
     def get_vector_store(self, collection_name: str) -> Any:
         try:
