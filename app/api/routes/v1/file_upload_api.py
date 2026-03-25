@@ -15,3 +15,5 @@ async def upload_file(file: UploadFile = File(...)):
     except Exception as e:
         print(e)
         return JSONResponse(content={"message": str(e)}, status_code=500)
+
+

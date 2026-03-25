@@ -7,7 +7,7 @@ from __future__ import annotations
 from typing import Any
 from pathlib import Path
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_community.document_loaders import PyMuPDFLoader, DocumentLoader
+from langchain_community.document_loaders import PyMuPDFLoader
 import os
 
 
@@ -41,7 +41,7 @@ class TextChunker(ChunkerStrategyInterface):
         print(f"Documents loaded: {len(documents)} documents")
         return documents
 
-    def chunk(self, documents: list[DocumentLoader]) -> list[str]:
+    def chunk(self, documents: list[Any]) -> list[str]:
         """
         Chunk the documents into a list of chunks.
         """
